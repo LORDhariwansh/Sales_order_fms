@@ -1,0 +1,26 @@
+﻿{
+  "name": "sales-order-fms",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint src --ext ts,tsx",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@solidjs/router": "^0.13.0",
+    "@supabase/supabase-js": "^2.42.0",
+    "solid-js": "^1.8.15"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-solid": "^0.13.1",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.5",
+    "vite-plugin-solid": "^2.10.1"
+  }
+}

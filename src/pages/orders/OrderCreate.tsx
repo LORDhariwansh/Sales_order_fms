@@ -1,4 +1,4 @@
-﻿import { Component, createSignal, createResource, For } from 'solid-js';
+import { Component, createSignal, createResource, For } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 import { supabase } from '../../lib/supabase';
 import { createOrder } from '../../services/orders';
@@ -41,7 +41,7 @@ export const OrderCreate: Component = () => {
       };
 
       const orderId = await createOrder(payload, firstStageId);
-      navigate(/orders/\);
+      navigate(`/orders/${orderId}`);
     } catch (err: any) {
       setError(err.message);
     } finally {

@@ -1,4 +1,4 @@
-﻿import { Component, createSignal, createEffect, onCleanup, For, Show } from 'solid-js';
+import { Component, createSignal, createEffect, onCleanup, For, Show } from 'solid-js';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -13,7 +13,7 @@ export const NotificationsWidget: Component = () => {
     const { data } = await supabase
       .from('notifications')
       .select('*')
-      .or(user_id.eq.\) // Add team logic if needed
+      .or(`user_id.eq.${auth.user.id}`) // Add team logic if needed
       .order('created_at', { ascending: false })
       .limit(10);
       
@@ -32,7 +32,7 @@ export const NotificationsWidget: Component = () => {
           event: 'INSERT', 
           schema: 'public', 
           table: 'notifications',
-          filter: user_id=eq.\ 
+          filter: `user_id=eq.${auth.user.id}`
         }, (payload) => {
           setNotifications(prev => [payload.new, ...prev].slice(0, 10));
           setUnreadCount(c => c + 1);

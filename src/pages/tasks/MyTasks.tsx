@@ -1,4 +1,4 @@
-﻿import { Component, createResource, For, Show } from 'solid-js';
+import { Component, createResource, For, Show } from 'solid-js';
 import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../contexts/AuthContext';
 import { calculateSLAStatus } from '../../services/workflow';
@@ -26,7 +26,7 @@ export const MyTasks: Component = () => {
   const [tasks] = createResource(() => auth.user?.id, fetchMyTasks);
 
   const TaskCard = (props: { task: any, color: string }) => (
-    <div style={{ border: 1px solid \, padding: '1rem', 'border-radius': '4px', 'margin-bottom': '0.5rem', background: '#fff' }}>
+    <div style={{ border: `1px solid ${props.color}`, padding: '1rem', 'border-radius': '4px', 'margin-bottom': '0.5rem', background: '#fff' }}>
       <h4 style={{ margin: '0 0 0.5rem 0' }}>Order: {props.task.orders?.submission_id}</h4>
       <p style={{ margin: 0 }}><strong>Task:</strong> {props.task.step || 'Workflow Task'}</p>
       <p style={{ margin: 0, color: props.color }}><strong>Due:</strong> {new Date(props.task.due_at).toLocaleString()}</p>

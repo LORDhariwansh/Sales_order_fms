@@ -1,4 +1,4 @@
-﻿import { Component, createSignal, createResource, For, Show } from 'solid-js';
+import { Component, createSignal, createResource, For, Show } from 'solid-js';
 import { supabase } from '../../lib/supabase';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -53,7 +53,7 @@ export const DocumentManager: Component<DocumentManagerProps> = (props) => {
       const nextVersion = existingDocs.length > 0 ? Math.max(...existingDocs.map(d => d.version)) + 1 : 1;
 
       const fileExt = currentFile.name.split('.').pop();
-      const storagePath = \/\_v\_\.\;
+      const storagePath = `${props.orderId}/${docType()}_v${nextVersion}_${Date.now()}.${fileExt}`;
 
       const { error: uploadError } = await supabase.storage
         .from('fms-documents')

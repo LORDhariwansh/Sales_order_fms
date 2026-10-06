@@ -1,4 +1,4 @@
-﻿import { Component, createSignal, createResource, For, Show } from 'solid-js';
+import { Component, createSignal, createResource, For, Show } from 'solid-js';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -30,7 +30,7 @@ const exportCSV = async (filters: any) => {
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
-  link.setAttribute('download', FMS_Report_\.csv);
+  link.setAttribute('download', `FMS_Report_${new Date().toISOString().split('T')[0]}.csv`);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -54,7 +54,7 @@ export const Dashboard: Component = () => {
   };
 
   const MetricCard = (props: { title: string, value: string | number, color?: string }) => (
-    <div style={{ padding: '1.5rem', background: 'white', 'border-radius': '8px', 'box-shadow': '0 2px 4px rgba(0,0,0,0.1)', 'border-left': 4px solid \ }}>
+    <div style={{ padding: '1.5rem', background: 'white', 'border-radius': '8px', 'box-shadow': '0 2px 4px rgba(0,0,0,0.1)', 'border-left': `4px solid ${props.color || '#007bff'}` }}>
       <h4 style={{ margin: '0 0 0.5rem 0', color: '#666' }}>{props.title}</h4>
       <div style={{ 'font-size': '2rem', 'font-weight': 'bold', color: '#333' }}>{props.value}</div>
     </div>
